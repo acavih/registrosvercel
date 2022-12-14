@@ -7,7 +7,7 @@ app.use(cors())
 app.use(express.json())
 
 app.get('/', (req, res) => {
-  res.end('hola mundo')
+    res.end('hola mundo')
 })
 
 app.use('/api', require('./routes'))

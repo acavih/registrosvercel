@@ -1,14 +1,14 @@
-import * as React from "react"
-import type { HeadFC, PageProps } from "gatsby"
-import Navigation from "../components/Navigation"
+import * as React from 'react'
+import type { HeadFC, PageProps } from 'gatsby'
+import Navigation from '../components/Navigation'
 
 const PartnersPage: React.FC<PageProps> = () => {
-  return (
-    <>
-      <Navigation />
-      <p>Partners</p>
-    </>
-  )
+    return (
+        <>
+            <Navigation />
+            <p>Partners</p>
+        </>
+    )
 }
 
 export default PartnersPage

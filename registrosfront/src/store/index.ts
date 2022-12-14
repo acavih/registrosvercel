@@ -1,23 +1,23 @@
-import { counterReduccer, counterSlice } from './features/CounterSlice';
+import { counterReduccer, counterSlice } from './features/CounterSlice'
 import { configureStore } from '@reduxjs/toolkit'
-import authSliceReduccer, { authSlice } from './features/AuthSlice';
-import storage from 'redux-persist/lib/storage';
-import { persistReducer, persistStore } from 'redux-persist';
-import thunk from 'redux-thunk';
+import authSliceReduccer, { authSlice } from './features/AuthSlice'
+import storage from 'redux-persist/lib/storage'
+import { persistReducer, persistStore } from 'redux-persist'
+import thunk from 'redux-thunk'
 
 const authReduccerPersisted = persistReducer({
-  key: 'registros-auth',
-  storage
+    key: 'registros-auth',
+    storage
 }, authSliceReduccer)
 
 export const store = configureStore({
-  reducer: {
-    [counterSlice.name]: counterReduccer,
-    [authSlice.name]: authReduccerPersisted
-  },
-  middleware(getDefaultMiddleware) {
-      return getDefaultMiddleware({serializableCheck: false}).concat(thunk)
-  },
+    reducer: {
+        [counterSlice.name]: counterReduccer,
+        [authSlice.name]: authReduccerPersisted
+    },
+    middleware (getDefaultMiddleware) {
+        return getDefaultMiddleware({ serializableCheck: false }).concat(thunk)
+    }
 })
 
 export const persistor = persistStore(store)
