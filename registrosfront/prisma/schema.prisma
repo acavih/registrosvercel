@@ -1,0 +1,99 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model attentions {
+  id                   String    @id @default(auto()) @map("_id") @db.ObjectId
+  Proyectos            String[]  @db.ObjectId
+  v                    Int       @map("__v")
+  archived             Boolean
+  comentario           String
+  cosaspendientes      String?
+  derivadoa            String[]  @db.ObjectId
+  derivadode           String[]  @db.ObjectId
+  diagnosticos         String[]  @db.ObjectId
+  fechaatencion        DateTime? @db.Date
+  fechacosaspendientes DateTime? @db.Date
+  formacion            String[]  @db.ObjectId
+  lugaratencion        String?   @db.ObjectId
+  motivosatencion      String[]  @db.ObjectId
+  tests                String[]  @db.ObjectId
+  tipoaenciones        String[]  @db.ObjectId
+  user                 String    @db.ObjectId
+  voluntariado         String[]  @db.ObjectId
+}
+
+model diagnosticos {
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  v          Int     @map("__v")
+  enfermedad String  @db.ObjectId
+  partner    String  @db.ObjectId
+  result     Boolean
+}
+
+model enfermedades {
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  v    Int    @map("__v")
+  name String
+}
+
+model logs {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  v            Int      @map("__v")
+  ip           String
+  json         String?
+  method       String
+  moment       DateTime @db.Date
+  path         String
+  /// Could not determine type: the field only had null or empty values in the sample set.
+  tokenDecoded Json?
+}
+
+model members {
+  id                String    @id @default(auto()) @map("_id") @db.ObjectId
+  v                 Int       @map("__v")
+  apellidos         String
+  ciudadresidencia  String    @db.ObjectId
+  codigo            String
+  correoelectronico String
+  cosaspendientes   String?
+  fechanacimiento   DateTime? @db.Date
+  howDidKnowUs      String?   @db.ObjectId
+  nacionalidad      String    @db.ObjectId
+  nombre            String
+  observaciones     String?
+  sexo              String    @db.ObjectId
+  sipcard           String
+  socioono          String    @db.ObjectId
+  telefono          String
+}
+
+model resources {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  /// Multiple data types found: Int: 99.5%, BigInt: 0.5% out of 211 sampled entries
+  v        Json     @map("__v")
+  archived Boolean?
+  name     String
+  type     String
+}
+
+model tests {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  v          Int      @map("__v")
+  attention  String   @db.ObjectId
+  dateTest   DateTime @db.Date
+  enfermedad String   @db.ObjectId
+  result     Boolean
+}
+
+model users {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  v        Int?   @map("__v")
+  password String
+  user     String
+}
