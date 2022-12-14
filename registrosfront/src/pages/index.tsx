@@ -4,7 +4,7 @@ import type { HeadFC } from "gatsby"
 import { TextField, Button, Grid, Container, Card, CardContent, Typography, CardActions } from "@mui/material";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import { useFormik } from 'formik';
+import { useFormik, Form } from 'formik';
 import { http } from '../utils/http';
 
 export default function LoginPage() {
@@ -34,26 +34,28 @@ export default function LoginPage() {
         </Toolbar>
       </AppBar>
       <Container sx={{ marginTop: '20px' }}>
-        <Card component="form" onSubmit={formik.handleSubmit}>
-          <CardContent>
-            <Typography sx={{ marginBottom: '10px' }} variant="h5" component="div">
-              Acceso a la web
-            </Typography>
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField name="email" onChange={formik.handleChange} value={formik.values.email} fullWidth label="Correo electrónico" />
+        <form onSubmit={formik.handleSubmit}>
+          <Card>
+            <CardContent>
+              <Typography sx={{ marginBottom: '10px' }} variant="h5" component="div">
+                Acceso a la web
+              </Typography>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TextField name="email" onChange={formik.handleChange} value={formik.values.email} fullWidth label="Correo electrónico" />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField name="password" onChange={formik.handleChange} value={formik.values.password} fullWidth label="Contraseña" type='password' />
+                </Grid>
+                <Grid sx={{ display: 'flex' }} item xs={12}>
+                </Grid>
               </Grid>
-              <Grid item xs={12}>
-                <TextField name="password" onChange={formik.handleChange} value={formik.values.password} fullWidth label="Contraseña" type='password' />
-              </Grid>
-              <Grid sx={{ display: 'flex' }} item xs={12}>
-              </Grid>
-            </Grid>
-          </CardContent>
-          <CardActions>
-            <Button sx={{ marginLeft: 'auto' }} disableElevation type="submit" variant="contained">Acceder</Button>
-          </CardActions>
-        </Card>
+            </CardContent>
+            <CardActions>
+              <Button sx={{ marginLeft: 'auto' }} disableElevation type="submit" variant="contained">Acceder</Button>
+            </CardActions>
+          </Card>
+        </form>
       </Container>
     </>
   )
