@@ -1,7 +1,7 @@
 import { Button, Container, Typography } from "@mui/material";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import type { HeadFC } from "gatsby";
+import { HeadFC, Link } from "gatsby";
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
@@ -27,8 +27,7 @@ export const GuestLayout: React.FC<React.PropsWithChildren<{}>> = ({children}) =
       <Container sx={{ marginTop: '20px' }}>
         {isLogged ? (
           <>
-            <Button variant="contained">Usted está autenticado</Button>
-            <Button onClick={() => dispatch(logout())} sx={{marginLeft: '10px'}} variant="contained">Logout</Button>
+            <Button variant="contained" LinkComponent={Link} to="/admin/users">Ir al area interna</Button>
           </>
         ) : children}
       </Container>
