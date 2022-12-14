@@ -1,7 +1,7 @@
 import 'dotenv/config'
 import type { GatsbyConfig } from "gatsby";
 
-console.log(process.env.DATABASE_URL)
+console.log(process.env.GATSBY_API_URL)
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -15,7 +15,7 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-plugin-env-variables`,
       options: {
-        allowList: ["DATABASE_URL"]
+        allowList: ["GATSBY_API_URL"]
       },
      },
   ],

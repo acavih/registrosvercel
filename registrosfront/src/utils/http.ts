@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+console.log('API URL ' + process.env.GATSBY_API_URL)
+
 export const http = axios.create({
-  baseURL: 'http://localhost:8080/api'
+  baseURL: process.env.GATSBY_API_URL
 })
