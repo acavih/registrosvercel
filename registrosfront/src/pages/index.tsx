@@ -1,6 +1,6 @@
 import '../styles.css'
 import * as React from "react"
-import type { HeadFC, PageProps } from "gatsby"
+import type { HeadFC } from "gatsby"
 import { TextField, Button, Grid, Container, Card, CardContent, Typography, CardActions } from "@mui/material";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
