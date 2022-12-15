@@ -1,7 +1,7 @@
-import DeleteIcon from '@mui/icons-material/Delete'
-import { Card, CardContent, Grid, IconButton, List, ListItem, ListItemButton, ListItemText, Toolbar, Typography } from '@mui/material'
+import { Button, Card, CardContent, Grid, List, ListItem, ListItemButton, ListItemText, Toolbar, Typography } from '@mui/material'
 import * as React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { PromptAction } from '../../components/Dialogs/PromptAction'
 import { AuthedLayout } from '../../components/Layouts/Authed'
 import useResources from '../../hooks/resources'
 import { RootState } from '../../store'
@@ -34,9 +34,14 @@ export default function ResourcesPage () {
                                     <ListItem
                                         key={r.id}
                                         secondaryAction={
-                                            <IconButton edge="end" aria-label="delete">
-                                                <DeleteIcon />
-                                            </IconButton>
+                                            <PromptAction
+                                                ActivatorElement={(props) => (<Button {...props}>Hola mundo</Button>)}
+                                                onSubmit={(response) => {
+                                                    console.log('LA RESPUESTA ES: ' + response)
+                                                }}
+                                                promptQuestion="Indique un nuevo nombre para el recurso"
+                                                initialValue={r.name}
+                                            />
                                         }
                                     >
                                         <ListItemText primary={r.name} secondary={r.type} />
