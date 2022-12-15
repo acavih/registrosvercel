@@ -6,6 +6,7 @@ import * as React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../store'
 import { logout } from '../../store/features/AuthSlice'
+import { http } from '../../utils/http'
 
 const drawerWidth = 250
 
@@ -18,8 +19,10 @@ export const AuthedLayout: React.FC<React.PropsWithChildren<any>> = (props) => {
 
     const isLogged = userToken !== ''
 
-    if (isLogged && tokenService.isExpired(userToken)) {
+    if (!isLogged && tokenService.isExpired(userToken)) {
         dispatch(logout())
+    } else {
+        http.defaults.headers.common.authorization = userToken
     }
 
     return (
