@@ -1,4 +1,4 @@
-import { Button, Card, CardContent, Grid, List, ListItem, ListItemButton, ListItemText, Toolbar, Typography } from '@mui/material'
+import { Card, CardContent, Grid, IconButton, List, ListItem, ListItemButton, ListItemText, Toolbar, Typography } from '@mui/material'
 import * as React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { PromptAction } from '../../components/Dialogs/PromptAction'
@@ -6,6 +6,7 @@ import { AuthedLayout } from '../../components/Layouts/Authed'
 import useResources from '../../hooks/resources'
 import { RootState } from '../../store'
 import { setActiveResource } from '../../store/features/ResourcesSlice'
+import { ModeEdit } from '@mui/icons-material'
 
 export default function ResourcesPage () {
     const dispatch = useDispatch()
@@ -35,7 +36,11 @@ export default function ResourcesPage () {
                                         key={r.id}
                                         secondaryAction={
                                             <PromptAction
-                                                ActivatorElement={(props) => (<Button {...props}>Hola mundo</Button>)}
+                                                ActivatorElement={(props) => (
+                                                    <IconButton {...props}>
+                                                        <ModeEdit />
+                                                    </IconButton>
+                                                )}
                                                 onSubmit={(response) => {
                                                     console.log('LA RESPUESTA ES: ' + response)
                                                 }}

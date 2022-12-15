@@ -2,6 +2,7 @@ import { Button, Card, CardActions, CardContent, CardHeader, Modal, TextField } 
 import * as React from 'react'
 import { useState } from 'react'
 import { ModalContent } from '../ModalContent'
+import { Activator } from './Activator'
 
 type Props = {
     ActivatorElement: (props: any) => React.ReactElement;
@@ -17,41 +18,40 @@ export const PromptAction: React.FC<Props> = ({
     onSubmit = () => { }
 }: Props) => {
     const [message, setMessage] = useState(initialValue)
-    const [activeModal, setActiveModal] = useState(false)
-
-    const openModal = () => {
-        setActiveModal(true)
-    }
-
-    const handleSubmit = async (e: any) => {
-        e.preventDefault()
-        await onSubmit(message)
-        setActiveModal(false)
-    }
 
     return (
         <>
-            <ActivatorElement onClick={openModal} />
-            <Modal open={activeModal} onClose={() => setActiveModal(false)}>
-                <ModalContent>
-                    <Card component="form" onSubmit={handleSubmit} sx={{ minWidth: 720 }}>
-                        <CardHeader title="Rellene el dato" />
-                        <CardContent>
-                            <TextField
-                                value={message}
-                                onChange={(e) => setMessage(e.target.value)}
-                                fullWidth
-                                label={promptQuestion}
-                            />
-                        </CardContent>
-                        <CardActions>
-                            <Button type="submit" variant="contained" disableElevation>
-                                Proceder
-                            </Button>
-                        </CardActions>
-                    </Card>
-                </ModalContent>
-            </Modal>
+            <Activator ActivatorElement={ActivatorElement}>
+                {({ state, onClose }) => {
+                    const handleSubmit = async (e: any) => {
+                        e.preventDefault()
+                        await onSubmit(message)
+                        onClose()
+                    }
+                    return (
+                        <Modal open={state} onClose={onClose}>
+                            <ModalContent>
+                                <Card component="form" onSubmit={handleSubmit} sx={{ minWidth: 720 }}>
+                                    <CardHeader title="Rellene el dato" />
+                                    <CardContent>
+                                        <TextField
+                                            value={message}
+                                            onChange={(e) => setMessage(e.target.value)}
+                                            fullWidth
+                                            label={promptQuestion}
+                                        />
+                                    </CardContent>
+                                    <CardActions>
+                                        <Button type="submit" variant="contained" disableElevation>
+                                    Proceder
+                                        </Button>
+                                    </CardActions>
+                                </Card>
+                            </ModalContent>
+                        </Modal>
+                    )
+                }}
+            </Activator>
         </>
     )
 }
