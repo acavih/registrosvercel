@@ -4,16 +4,16 @@ export const authSlice = createSlice({
     name: 'auth',
     initialState: {
         token: '',
-        userInfo: {},
+        userInfo: {} as { user?: string },
         logged: false
     },
     reducers: {
-        login (state, { payload: { token, userInfo } }: PayloadAction<any>) {
+        login(state, { payload: { token, userInfo } }: PayloadAction<any>) {
             state.logged = true
             state.token = token
             state.userInfo = userInfo
         },
-        logout (state) {
+        logout(state) {
             state.logged = false
             state.token = ''
             state.userInfo = {}

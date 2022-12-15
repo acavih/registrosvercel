@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../store'
 import { logout } from '../../store/features/AuthSlice'
 import { http } from '../../utils/http'
+import UserButton from './components/UserButton'
 
 const drawerWidth = 250
 
@@ -39,14 +40,14 @@ export const AuthedLayout: React.FC<React.PropsWithChildren<any>> = (props) => {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         {isLogged ? 'Area privada' : 'Necesita volver a idenficarse'}
                     </Typography>
-                    {isLogged && <Button disableElevation color='error' onClick={() => dispatch(logout())} sx={{ marginLeft: '10px' }} variant="contained">Logout</Button>}
+                    {isLogged && <UserButton />}
                 </Toolbar>
             </AppBar>
             {isLogged && <Drawer open={true} variant="persistent">
                 <Toolbar />
                 <List>
                     {links.map((link) => <ListItem key={link.text} sx={{ width: drawerWidth }} component={Link} to={link.to}>
-                        <ListItemText>{ link.text }</ListItemText>
+                        <ListItemText>{link.text}</ListItemText>
                     </ListItem>)}
                 </List>
             </Drawer>}
