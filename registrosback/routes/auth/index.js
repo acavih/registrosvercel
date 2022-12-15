@@ -2,7 +2,8 @@ const express = require('express')
 const { PrismaClient } = require('@prisma/client')
 const httpStatus = require('http-status')
 const bcryptjs = require('bcryptjs')
-const { createPayload } = require('../../utils/jwt')
+const { createPayload, tokenIsValid } = require('../../utils/jwt')
+const authedUser = require('../../middlewares/authedUser')
 
 const client = new PrismaClient()
 
@@ -35,6 +36,11 @@ authRouter.post('/login', async (req, res) => {
         token: createPayload(user.user, payload),
         userInfo: payload
     })
+})
+
+authRouter.get('/profile', authedUser, (req, res) => {
+    const { password, ...profile } = req.user
+    res.json({ profileInfo: profile })
 })
 
 module.exports = authRouter

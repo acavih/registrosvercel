@@ -1,6 +1,7 @@
 COSAS QUE FALTAN POR HACER
  * Comprobar en el cliente si el token esta caducado
  * Middleware en el server para proteger rutas
+ * Crear error handler (router auth endpoint profile authorization header)
 
 
 

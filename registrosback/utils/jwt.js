@@ -9,5 +9,8 @@ module.exports = {
             issuer,
             expiresIn: EXPIRES_IN
         })
+    },
+    tokenIsValid (token) {
+        return jwt.verify(token, SECRET)
     }
 }

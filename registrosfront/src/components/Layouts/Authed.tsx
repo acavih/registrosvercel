@@ -1,3 +1,4 @@
+import TokenService from '@around25/jwt-utils'
 import { AppBar, Button, Drawer, List, ListItem, ListItemText, Toolbar, Typography } from '@mui/material'
 import { Container } from '@mui/system'
 import { Link } from 'gatsby'
@@ -9,10 +10,17 @@ import { logout } from '../../store/features/AuthSlice'
 const drawerWidth = 250
 
 export const AuthedLayout: React.FC<React.PropsWithChildren<any>> = (props) => {
+    const tokenService = new TokenService({
+        storageSystem: window.localStorage
+    })
     const userToken = useSelector((state: RootState) => state.auth.token)
     const dispatch = useDispatch()
 
     const isLogged = userToken !== ''
+
+    if (isLogged && tokenService.isExpired(userToken)) {
+        dispatch(logout())
+    }
 
     return (
         <>
