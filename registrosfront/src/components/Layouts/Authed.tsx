@@ -1,9 +1,9 @@
 import { AppBar, Button, Drawer, List, ListItem, ListItemText, Toolbar, Typography } from '@mui/material'
-import * as React from 'react'
-import { Link } from 'gatsby'
 import { Container } from '@mui/system'
-import { RootState } from '../../store'
+import { Link } from 'gatsby'
+import * as React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../store'
 import { logout } from '../../store/features/AuthSlice'
 
 const drawerWidth = 250
@@ -33,7 +33,7 @@ export const AuthedLayout: React.FC<React.PropsWithChildren<any>> = (props) => {
                 </List>
             </Drawer>}
             <Container sx={{ marginLeft: isLogged ? (drawerWidth + 1) + 'px' : 0, marginTop: 10 }}>
-                {isLogged ? props.children : <Button variant="contained" color="error" LinkComponent={Link} to="/">Volver a identificarse</Button>}
+                    {isLogged ? props.children : <Button variant="contained" color="error" LinkComponent={Link} to="/">Volver a identificarse</Button>}
             </Container>
         </>
     )
