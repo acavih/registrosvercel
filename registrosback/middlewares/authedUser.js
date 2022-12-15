@@ -1,5 +1,6 @@
 const { PrismaClient } = require('@prisma/client')
 const httpStatus = require('http-status')
+const { JsonWebTokenError } = require('jsonwebtoken')
 const { tokenIsValid } = require('../utils/jwt')
 
 const client = new PrismaClient()
@@ -32,18 +33,16 @@ module.exports = async function authedUser (req, res, next) {
 
         next()
     } catch (error) {
-        console.log(error.name)
-        switch (error.name) {
-        case 'TokenExpiredError':
-            return res.status(httpStatus.FORBIDDEN).json({
-                message: 'El token esta expirado'
-            })
-
-        default:
+        if (error instanceof JsonWebTokenError) {
             console.error(error)
             return res.status(httpStatus.FORBIDDEN).json({
-                message: 'El token no es valido...'
+                message: 'El token no es valido...',
+                payload: {
+                    reason: error.message
+                }
             })
+        } else {
+            throw error
         }
     }
 }

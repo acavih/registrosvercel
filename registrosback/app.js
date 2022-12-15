@@ -12,4 +12,9 @@ app.get('/', (req, res) => {
 
 app.use('/api', require('./routes'))
 
+process.on('uncaughtException', (err) => {
+    console.error(err)
+    console.log('un error tuvo lugar')
+})
+
 module.exports = app

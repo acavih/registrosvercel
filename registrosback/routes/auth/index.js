@@ -2,7 +2,7 @@ const express = require('express')
 const { PrismaClient } = require('@prisma/client')
 const httpStatus = require('http-status')
 const bcryptjs = require('bcryptjs')
-const { createPayload, tokenIsValid } = require('../../utils/jwt')
+const { createPayload } = require('../../utils/jwt')
 const authedUser = require('../../middlewares/authedUser')
 
 const client = new PrismaClient()
