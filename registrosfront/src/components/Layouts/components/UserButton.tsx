@@ -1,4 +1,5 @@
 import { Button, Card, CardActions, CardHeader, Popover } from '@mui/material'
+import { Container } from '@mui/system'
 import * as React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../store'
@@ -30,7 +31,7 @@ export default function UserButton () {
                 <Card elevation={0}>
                     <CardHeader title="Menu de usuario" />
                     <CardActions>
-                        <Button variant="contained" onClick={() => dispatch(logout())} disableElevation color='error'>Logout</Button>
+                        <Button variant="contained" onClick={() => dispatch(logout())} disableElevation color='error'>Cerrar sesión</Button>
                     </CardActions>
                 </Card>
             </Popover>
