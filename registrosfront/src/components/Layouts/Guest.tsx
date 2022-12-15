@@ -3,15 +3,12 @@ import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import { HeadFC, Link } from 'gatsby'
 import * as React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { RootState } from '../../store'
-import { logout } from '../../store/features/AuthSlice'
 import '../../styles.css'
 
 export const GuestLayout: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
     const userToken = useSelector((state: RootState) => state.auth.token)
-    const dispatch = useDispatch()
-
     const isLogged = userToken !== ''
 
     return (
@@ -19,7 +16,7 @@ export const GuestLayout: React.FC<React.PropsWithChildren<{}>> = ({ children })
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Página de acceso
+                        Página de acceso
                     </Typography>
                 </Toolbar>
             </AppBar>

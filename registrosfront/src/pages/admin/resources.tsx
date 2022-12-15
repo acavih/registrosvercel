@@ -9,7 +9,7 @@ import { setActiveResource } from '../../store/features/ResourcesSlice'
 
 export default function ResourcesPage () {
     const dispatch = useDispatch()
-    const { resources, activeResources, resourcesLoaded, resourceTypes } = useResources()
+    const { activeResources, resourcesLoaded, resourceTypes } = useResources()
     const { activeResource } = useSelector((s: RootState) => s.resources)
 
     if (!resourcesLoaded) {
@@ -26,7 +26,7 @@ export default function ResourcesPage () {
                         <CardContent>
                             <Toolbar>
                                 <Typography variant={'h5'} component="h2">
-                    Listado de recursos {activeResource}
+                                    Listado de recursos {activeResource}
                                 </Typography>
                             </Toolbar>
                             <List>
@@ -56,7 +56,7 @@ export default function ResourcesPage () {
                         <CardContent>
                             <Toolbar>
                                 <Typography variant={'h5'} component="h2">
-                    Listado de recursos
+                                    Listado de recursos
                                 </Typography>
                             </Toolbar>
                             <List>
