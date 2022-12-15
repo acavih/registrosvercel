@@ -1,6 +1,5 @@
 import TokenService from '@around25/jwt-utils'
 import { AppBar, Button, Drawer, List, ListItem, ListItemText, Toolbar, Typography } from '@mui/material'
-import { Container } from '@mui/system'
 import { Link } from 'gatsby'
 import * as React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -51,9 +50,10 @@ export const AuthedLayout: React.FC<React.PropsWithChildren<any>> = (props) => {
                     </ListItem>)}
                 </List>
             </Drawer>}
-            <Container sx={{ marginLeft: isLogged ? (drawerWidth + 1) + 'px' : 0, marginTop: 10 }}>
+            <div style={{ padding: 20, marginLeft: isLogged ? (drawerWidth + 1) + 'px' : 0, marginTop: 10 }}>
+                <Toolbar />
                 {isLogged ? props.children : <Button variant="contained" color="error" LinkComponent={Link} to="/">Volver a identificarse</Button>}
-            </Container>
+            </div>
         </>
     )
 }
