@@ -25,6 +25,14 @@ export const AuthedLayout: React.FC<React.PropsWithChildren<any>> = (props) => {
         http.defaults.headers.common.authorization = userToken
     }
 
+    const links = [
+        { text: 'Usuarios*', to: '/admin/users' },
+        { text: 'Socios*', to: '/admin/partners' },
+        { text: 'Atenciones*', to: '/admin/attentions' },
+        { text: 'Recursos*', to: '/admin/resources' },
+        { text: 'Estadísticas*', to: '/admin/stats' }
+    ]
+
     return (
         <>
             <AppBar sx={(theme) => ({ zIndex: theme.zIndex.drawer + 1 })} position="fixed">
@@ -38,9 +46,9 @@ export const AuthedLayout: React.FC<React.PropsWithChildren<any>> = (props) => {
             {isLogged && <Drawer open={true} variant="persistent">
                 <Toolbar />
                 <List>
-                    <ListItem sx={{ width: drawerWidth }} component={Link} to="/">
-                        <ListItemText>Primer item de lista</ListItemText>
-                    </ListItem>
+                    {links.map((link) => <ListItem key={link.text} sx={{ width: drawerWidth }} component={Link} to={link.to}>
+                        <ListItemText>{ link.text }</ListItemText>
+                    </ListItem>)}
                 </List>
             </Drawer>}
             <Container sx={{ marginLeft: isLogged ? (drawerWidth + 1) + 'px' : 0, marginTop: 10 }}>
