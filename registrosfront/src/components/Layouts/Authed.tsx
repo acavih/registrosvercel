@@ -33,7 +33,7 @@ export const AuthedLayout: React.FC<React.PropsWithChildren<any>> = (props) => {
                 </List>
             </Drawer>}
             <Container sx={{ marginLeft: isLogged ? (drawerWidth + 1) + 'px' : 0, marginTop: 10 }}>
-                    {isLogged ? props.children : <Button variant="contained" color="error" LinkComponent={Link} to="/">Volver a identificarse</Button>}
+                {isLogged ? props.children : <Button variant="contained" color="error" LinkComponent={Link} to="/">Volver a identificarse</Button>}
             </Container>
         </>
     )

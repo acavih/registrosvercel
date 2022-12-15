@@ -4,10 +4,14 @@
   "private": true,
   "description": "gatsbytest",
   "author": "Raul",
+  "lint-staged": {
+    "*.ts": "npm run lint"
+  },
   "keywords": [
     "gatsby"
   ],
   "scripts": {
+    "lint": "eslint . --fix",
     "develop": "gatsby develop",
     "start": "gatsby develop",
     "build": "gatsby build",

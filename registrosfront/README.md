@@ -1,6 +1,6 @@
 COSAS QUE FALTAN POR HACER
-Comprobar en el cliente si el token esta caducado
-Middleware en el server para proteger rutas
+ * Comprobar en el cliente si el token esta caducado
+ * Middleware en el server para proteger rutas
 
 
 
