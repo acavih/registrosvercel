@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "registrosback"
+		},
+		{
+			"path": "registrosfront"
+		},
+		{
+			"path": "registrosfrontnuxt"
+		}
+	],
+	"settings": {}
+}
