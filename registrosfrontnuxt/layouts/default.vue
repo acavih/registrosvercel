@@ -3,7 +3,6 @@
     <v-navigation-drawer
       v-model="drawer"
       :v-if="isLogged"
-      :mini-variant="miniVariant"
       :clipped="clipped"
       fixed
       app
@@ -51,8 +50,7 @@ export default {
   data () {
     return {
       clipped: true,
-      drawer: false,
-      fixed: false,
+      drawer: true,
       items: [
         {
           icon: 'mdi-apps',
@@ -65,9 +63,6 @@ export default {
           to: '/inspire'
         }
       ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
       loaded: false,
       title: 'Area interna'
     }

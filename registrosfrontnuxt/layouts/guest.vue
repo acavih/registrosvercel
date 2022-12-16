@@ -12,7 +12,7 @@
     <v-main>
       <v-container>
         <if-is-logged>
-          <p>Ya has iniciado sesión</p>
+          <redirect-to to="/admin/resources" message="Redireccionando al area interna" />
           <template slot="guest">
             <Nuxt />
           </template>
@@ -25,9 +25,10 @@
 <script>
 import { mapGetters } from 'vuex'
 import IfIsLogged from '~/components/utils/IfIsLogged.vue'
+import RedirectTo from '~/components/utils/RedirectTo.vue'
 export default {
   name: 'DefaultLayout',
-  components: { IfIsLogged },
+  components: { IfIsLogged, RedirectTo },
   data () {
     return {
       title: 'Página de acceso',
