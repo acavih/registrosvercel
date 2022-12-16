@@ -1,49 +1,46 @@
 <template>
-  <v-app>
+  <v-app v-if="loaded">
     <v-app-bar
-      :clipped-left="clipped"
       fixed
       dark
       color="primary"
       app
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>{{ title }}</v-toolbar-title>
       <v-spacer />
     </v-app-bar>
     <v-main>
       <v-container>
-        <Nuxt />
+        <if-is-logged>
+          <p>Ya has iniciado sesión</p>
+          <template slot="guest">
+            <Nuxt />
+          </template>
+        </if-is-logged>
       </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import IfIsLogged from '~/components/utils/IfIsLogged.vue'
 export default {
   name: 'DefaultLayout',
+  components: { IfIsLogged },
   data () {
     return {
-      clipped: true,
-      drawer: false,
-      fixed: false,
-      items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
-        }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Página de acceso'
+      title: 'Página de acceso',
+      loaded: false
     }
+  },
+  mounted () {
+    setTimeout(() => {
+      this.loaded = true
+    }, 500)
+  },
+  computed: {
+    ...mapGetters('auth', ['isLogged'])
   }
 }
 </script>

@@ -1,7 +1,8 @@
 <template>
-  <v-app>
+  <v-app v-if="loaded">
     <v-navigation-drawer
       v-model="drawer"
+      :v-if="isLogged"
       :mini-variant="miniVariant"
       :clipped="clipped"
       fixed
@@ -44,6 +45,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'DefaultLayout',
   data () {
@@ -66,8 +68,17 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
+      loaded: false,
       title: 'Area interna'
     }
+  },
+  computed: {
+    ...mapGetters('auth', ['isLogged'])
+  },
+  mounted () {
+    setTimeout(() => {
+      this.loaded = true
+    }, 500)
   }
 }
 </script>
