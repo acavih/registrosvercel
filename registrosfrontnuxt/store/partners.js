@@ -1,5 +1,6 @@
 export const state = () => ({
   partners: [],
+  totalPartners: 0,
   partnerTableHeaders: [
     { text: '', value: 'data-table-expand' },
     { text: 'Código', value: 'codigo' },
@@ -24,8 +25,9 @@ export const getters = {
 * @type {import('vuex').MutationTree<ReturnType<typeof state>>>}
 */
 export const mutations = {
-  partnersList (state, list) {
-    state.partners = list
+  partnersList (state, { partners, totalPartners }) {
+    state.partners = partners
+    state.totalPartners = totalPartners
   },
   partnerAddition (state, partner) {
     state.partners.push(partner)
@@ -36,8 +38,10 @@ export const mutations = {
 * @type {import('vuex').ActionTree<ReturnType<typeof state>>, any>}
 */
 export const actions = {
-  async retrievePartners (ctx) {
-    const reponsePartners = await this.$axios.get('/partners')
+  async retrievePartners (ctx, query) {
+    const reponsePartners = await this.$axios.get('/partners', {
+      params: query
+    })
 
     ctx.commit('partnersList', reponsePartners.data.payload)
   },

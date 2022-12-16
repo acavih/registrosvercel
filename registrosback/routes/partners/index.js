@@ -6,8 +6,11 @@ const client = new PrismaClient()
 const partnersRouter = express.Router()
 
 partnersRouter.get('/', async (req, res) => {
+    const { itemsPerPage = 20, page = 1 } = req.query
+    const skip = Number(itemsPerPage) * (Number(page) - 1)
     const partnersWithoutResource = await client.members.findMany({
-        take: 20
+        take: Number(itemsPerPage),
+        skip
     })
 
     const partners = await Promise.all(
@@ -20,9 +23,11 @@ partnersRouter.get('/', async (req, res) => {
         })
     )
 
+    const totalPartners = await client.members.count()
+
     return res.status(200).json({
         message: 'Lista de elemntos',
-        payload: partners
+        payload: { partners, totalPartners }
     })
 })
 

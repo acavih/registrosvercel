@@ -1,5 +1,13 @@
 <template>
-  <v-data-table :loading="loading" :expanded.sync="expanded" show-expand :items="partnersList" :headers="partnerTableHeaders">
+  <v-data-table
+    :options.sync="partnersListOptions"
+    :server-items-length="totalPartners"
+    :loading="loading"
+    :expanded.sync="expanded"
+    show-expand
+    :items="partnersList"
+    :headers="partnerTableHeaders"
+  >
     <template #top>
       <v-sheet style="display: flex">
         <v-spacer />
@@ -40,11 +48,29 @@ export default {
     loading: {
       type: Boolean,
       default: false
+    },
+    totalPartners: {
+      type: Number,
+      required: true
+    },
+    optionsPage: {
+      type: Object,
+      required: false,
+      default: () => ({})
     }
   },
   data () {
     return {
-      expanded: []
+      expanded: [],
+      partnersListOptions: { ...this.optionsPage }
+    }
+  },
+  watch: {
+    partnersListOptions: {
+      deep: true,
+      handler () {
+        this.$emit('update:options-page', this.partnersListOptions)
+      }
     }
   },
   computed: {
