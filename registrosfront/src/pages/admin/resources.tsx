@@ -42,7 +42,10 @@ export default function ResourcesPage () {
                                                     </IconButton>
                                                 )}
                                                 onSubmit={(response) => {
-                                                    console.log('LA RESPUESTA ES: ' + response)
+                                                    console.log('payload  aenviar', {
+                                                        ...r,
+                                                        name: response
+                                                    })
                                                 }}
                                                 promptQuestion="Indique un nuevo nombre para el recurso"
                                                 initialValue={r.name}
