@@ -21,8 +21,9 @@ export const PromptAction: React.FC<Props> = ({
 
     return (
         <>
-            <Activator ActivatorElement={ActivatorElement}>
-                {({ state, onClose }) => {
+            <Activator
+                ActivatorElement={ActivatorElement}
+                Content={({ onClose, state }) => {
                     const handleSubmit = async (e: any) => {
                         e.preventDefault()
                         await onSubmit(message)
@@ -51,7 +52,7 @@ export const PromptAction: React.FC<Props> = ({
                         </Modal>
                     )
                 }}
-            </Activator>
+            />
         </>
     )
 }
