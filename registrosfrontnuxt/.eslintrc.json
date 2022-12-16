@@ -15,7 +15,5 @@
   "plugins": [
   ],
   // add your custom rules here
-  "rules": {
-    "indent": [4, "error"]
-  }
+  "rules": {}
 }
