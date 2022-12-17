@@ -6,7 +6,6 @@ const client = new PrismaClient()
 const partnersRouter = express.Router()
 
 partnersRouter.get('/', async (req, res) => {
-    console.log('recuperando los socios')
     const { itemsPerPage = 20, page = 1 } = req.query
     const skip = Number(itemsPerPage) * (Number(page) - 1)
     const partnersWithoutResource = await client.members.findMany({
