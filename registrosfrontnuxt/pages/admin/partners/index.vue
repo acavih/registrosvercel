@@ -5,7 +5,7 @@
         Listado de socios
       </v-card-title>
       <v-card-text>
-        <partners-table :total-partners="totalPartners" :options-page.sync="optionsPage" :loading="loading" :partners-list="partners" />
+        <partners-table :total-partners="totalPartners" :loading="loading" :partners-list="partners" />
       </v-card-text>
     </v-card>
   </v-sheet>
@@ -18,34 +18,19 @@ export default {
   components: { PartnersTable },
   data () {
     return {
-      loading: false,
-      optionsPage: {
-        itemsPerPage: Number(this.$route.query.itemsPerPage),
-        page: Number(this.$route.query.page || 1)
-      }
+      loading: false
     }
-  },
-  watch: {
-    optionsPage: {
-      deep: true,
-      handler () {
-        this.$router.push({
-          query: this.optionsPage
-        })
-        setTimeout(() => {
-          this.handleRetrievePartners()
-        }, 250)
-      }
-    }
-  },
-  async created () {
-    this.$router.push({
-      query: this.optionsPage
-    })
-    await this.handleRetrievePartners()
   },
   computed: {
     ...mapState('partners', ['partners', 'partnerTableHeaders', 'totalPartners'])
+  },
+  watch: {
+    '$route.query' () {
+      this.handleRetrievePartners()
+    }
+  },
+  mounted () {
+    this.handleRetrievePartners()
   },
   methods: {
     ...mapActions('partners', ['retrievePartners']),

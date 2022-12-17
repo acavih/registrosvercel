@@ -31,6 +31,7 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>{{ title }}</v-toolbar-title>
       <v-spacer />
+      <user-menu />
     </v-app-bar>
     <v-main>
       <v-container>
@@ -42,8 +43,10 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import UserMenu from '~/components/layouts/UserMenu.vue'
 export default {
   name: 'DefaultLayout',
+  components: { UserMenu },
   data () {
     return {
       clipped: true,

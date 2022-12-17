@@ -20,6 +20,10 @@ export const mutations = {
     console.log('on the mutation')
     state.token = payload.token
     state.userInfo = payload.userInfo
+  },
+  logout (state) {
+    state.userInfo = {}
+    state.token = ''
   }
 }
 

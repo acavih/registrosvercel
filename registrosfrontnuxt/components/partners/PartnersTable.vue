@@ -52,24 +52,14 @@ export default {
     totalPartners: {
       type: Number,
       required: true
-    },
-    optionsPage: {
-      type: Object,
-      required: false,
-      default: () => ({})
     }
   },
   data () {
     return {
       expanded: [],
-      partnersListOptions: { ...this.optionsPage }
-    }
-  },
-  watch: {
-    partnersListOptions: {
-      deep: true,
-      handler () {
-        this.$emit('update:options-page', this.partnersListOptions)
+      partnersListOptions: {
+        itemsPerPage: Number(this.$route.query.itemsPerPage || 20),
+        page: Number(this.$route.query.page || 1)
       }
     }
   },
@@ -77,6 +67,11 @@ export default {
     ...mapState('partners', ['partnerTableHeaders']),
     isAllExpanded () {
       return this.expanded.length === this.partnersList.length
+    }
+  },
+  watch: {
+    partnersListOptions () {
+      this.$router.push({ query: this.partnersListOptions })
     }
   },
   methods: {

@@ -24,7 +24,7 @@ export default {
   },
   mounted () {
     setTimeout(() => {
-      this.$router.push('/admin/resources')
+      this.$router.push(this.to)
     }, this.ms)
   }
 }
